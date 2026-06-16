@@ -162,9 +162,11 @@ CACHES = {
 }
 
 # Logging Configuration
+# Logging Configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {message}',
@@ -175,24 +177,20 @@ LOGGING = {
             'style': '{',
         },
     },
+
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
             'stream': sys.stdout,
         },
-        'file': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'django.log'),
-            'maxBytes': 1024 * 1024 * 5,  # 5 MB
-            'backupCount': 5,
-            'formatter': 'verbose',
-        },
     },
+
     'root': {
         'handlers': ['console'],
         'level': 'INFO' if not DEBUG else 'DEBUG',
     },
+
     'loggers': {
         'django': {
             'handlers': ['console'],
